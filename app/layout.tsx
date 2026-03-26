@@ -1,11 +1,10 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
-
+import { Geist_Mono, Inter } from "next/font/google"
+import { Toaster } from "react-hot-toast"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})
-
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
@@ -23,7 +22,10 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <Toaster position="top-center" reverseOrder={false} />
+        </ThemeProvider>
       </body>
     </html>
   )
