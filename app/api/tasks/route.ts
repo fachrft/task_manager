@@ -51,6 +51,9 @@ export async function GET() {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        user: true,
+      },
       take: 10,
     })
 

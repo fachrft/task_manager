@@ -103,6 +103,7 @@ export async function DELETE(
 ) {
   try {
     const supabase = await createClient()
+    const supabaseAdmin = createAdminClient()
     const { id } = await params
     const {
       data: { user },
@@ -115,6 +116,14 @@ export async function DELETE(
 
     if (user.id !== id) {
       throw new ApiError("Forbidden: You can only delete your own account", 403)
+    }
+
+    const { error: deleteAuthError } = await supabaseAdmin.auth.admin.deleteUser(
+      id
+    )
+
+    if (deleteAuthError) {
+      throw new ApiError(deleteAuthError.message, 400)
     }
 
     const deletedUser = await prisma.user.delete({
