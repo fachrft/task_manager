@@ -29,7 +29,10 @@ export async function POST(request: Request) {
       },
     })
 
-    return NextResponse.json(task, { status: 201 })
+    return NextResponse.json(
+      { message: "Task created successfully", data: task },
+      { status: 201 }
+    )
   } catch (error: any) {
     console.error("[TASK_ERROR]:", error)
     if (error instanceof ApiError) {

@@ -1,0 +1,434 @@
+{
+  "info": {
+    "_postman_id": "c44955a4-0433-4a27-8226-6e189af7f769",
+    "name": "Task Manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24259135"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Registration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"JohnDoe\",\r\n    \"email\": \"jhondoe@example.com\",\r\n    \"password\": \"password\",\r\n    \"confirmPassword\": \"passwordsadsadsad\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "fachrifat05@gmail.com",
+                  "type": "text",
+                  "uuid": "5959987b-11c3-4710-96e2-610dda1d7d43"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text",
+                  "uuid": "3522eab8-ebf8-4dad-b923-3d1360bd33dc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6ImQ3ZGVmMGViLTRmYzYtNDc5OC1iYTIyLTY3NjZiN2ZiZDE3MCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3ltbXNrb3RxZXBwYm9ndXpoa2pmLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJmNjc1Zjg3ZS1iNTQ4LTQ4MjUtYTdkMy0zYjM1OTdiOGRkZDgiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzc0NTMwMjY4LCJpYXQiOjE3NzQ1MjY2NjgsImVtYWlsIjoiZmFjaHJpZmF0MDVAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6ImZhY2hyaWZhdDA1QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6ImY2NzVmODdlLWI1NDgtNDgyNS1hN2QzLTNiMzU5N2I4ZGRkOCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzc0NTI2NjY4fV0sInNlc3Npb25faWQiOiI3M2JjMGMxNS1jNzc3LTRjMzUtYmM0Ny1iZmVmODgyZWIwYjEiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.vKsirMkbjxobipVxlDkoxL2G46HVWv4ehJoog84WaL_WsjvKs6Jo8Go8N-uAA0d7fTz9ME7x1l9WhSQ5nsiaEw",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "fachrifat05@gmail.com",
+                  "type": "text",
+                  "uuid": "5959987b-11c3-4710-96e2-610dda1d7d43"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text",
+                  "uuid": "3522eab8-ebf8-4dad-b923-3d1360bd33dc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/users/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "users",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User By Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJFUzI1NiIsImtpZCI6ImQ3ZGVmMGViLTRmYzYtNDc5OC1iYTIyLTY3NjZiN2ZiZDE3MCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3ltbXNrb3RxZXBwYm9ndXpoa2pmLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJmNjc1Zjg3ZS1iNTQ4LTQ4MjUtYTdkMy0zYjM1OTdiOGRkZDgiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzc0NTMwMjY4LCJpYXQiOjE3NzQ1MjY2NjgsImVtYWlsIjoiZmFjaHJpZmF0MDVAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6ImZhY2hyaWZhdDA1QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6ImY2NzVmODdlLWI1NDgtNDgyNS1hN2QzLTNiMzU5N2I4ZGRkOCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzc0NTI2NjY4fV0sInNlc3Npb25faWQiOiI3M2JjMGMxNS1jNzc3LTRjMzUtYmM0Ny1iZmVmODgyZWIwYjEiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.vKsirMkbjxobipVxlDkoxL2G46HVWv4ehJoog84WaL_WsjvKs6Jo8Go8N-uAA0d7fTz9ME7x1l9WhSQ5nsiaEw",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "fachrifat05@gmail.com",
+                  "type": "text",
+                  "uuid": "5959987b-11c3-4710-96e2-610dda1d7d43"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text",
+                  "uuid": "3522eab8-ebf8-4dad-b923-3d1360bd33dc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/f675f87e-b548-4825-a7d3-3b3597b8ddd8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "f675f87e-b548-4825-a7d3-3b3597b8ddd8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "fachrifat05@gmail.com",
+                  "type": "text",
+                  "uuid": "5959987b-11c3-4710-96e2-610dda1d7d43"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text",
+                  "uuid": "3522eab8-ebf8-4dad-b923-3d1360bd33dc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Task By User Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"JohnDoe\",\r\n    \"email\": \"jhondoe@example.com\",\r\n    \"password\": \"password\",\r\n    \"confirmPassword\": \"passwordsadsadsad\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/37e513a6-3ecf-4968-9882-59652f331a9c/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "37e513a6-3ecf-4968-9882-59652f331a9c",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Jhon Doe\",\r\n    \"email\": \"john.doe@example.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/f675f87e-b548-4825-a7d3-3b3597b8ddd8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "f675f87e-b548-4825-a7d3-3b3597b8ddd8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/f675f87e-b548-4825-a7d3-3b3597b8ddd8",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "f675f87e-b548-4825-a7d3-3b3597b8ddd8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Get All Tasks",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Task By Id",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current User Tasks",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Create a New Task\",\r\n    \"description\": \"This request creates a new task in the system.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Tasks",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Update a New Task\",\r\n    \"description\": \"This request creates a new task in the system.\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/265ac8fd-faea-44d4-99d1-acd9ca617f1a",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "265ac8fd-faea-44d4-99d1-acd9ca617f1a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Tasks",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/tasks/265ac8fd-faea-44d4-99d1-acd9ca617f1a",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tasks",
+                "265ac8fd-faea-44d4-99d1-acd9ca617f1a"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "const response = pm.response.json();\r",
+          "if (response.session && response.session.access_token) {\r",
+          "    pm.collectionVariables.set(\"token\", response.session.access_token);\r",
+          "    console.log(\"Token updated successfully!\");\r",
+          "}\r",
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}

@@ -14,6 +14,9 @@ export async function GET(
       where: {
         id,
       },
+      include: {
+        user: true,
+      },
     })
 
     if (!task) {
@@ -72,7 +75,10 @@ export async function PUT(
       throw new ApiError("Task not found", 404)
     }
 
-    return NextResponse.json(task, { status: 200 })
+    return NextResponse.json(
+      { message: "Task updated successfully", data: task },
+      { status: 200 }
+    )
   } catch (error: any) {
     console.error("[TASK_ERROR]:", error)
     if (error instanceof ApiError) {
@@ -105,18 +111,25 @@ export async function DELETE(
 
     const { id } = await params
 
-    const task = await prisma.task.delete({
+    const existingTask = await prisma.task.findUnique({
+      where: { id },
+    })
+
+    if (!existingTask) {
+      throw new ApiError("Task not found", 404)
+    }
+
+    await prisma.task.delete({
       where: {
         id,
         userId: user.id,
       },
     })
 
-    if (!task) {
-      throw new ApiError("Task not found", 404)
-    }
-
-    return NextResponse.json(task, { status: 200 })
+    return NextResponse.json(
+      { message: "Task deleted successfully" },
+      { status: 200 }
+    )
   } catch (error: any) {
     console.error("[TASK_ERROR]:", error)
     if (error instanceof ApiError) {

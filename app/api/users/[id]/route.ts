@@ -118,18 +118,19 @@ export async function DELETE(
       throw new ApiError("Forbidden: You can only delete your own account", 403)
     }
 
-    const { error: deleteAuthError } = await supabaseAdmin.auth.admin.deleteUser(
-      id
-    )
+    const existingUser = await prisma.user.findUnique({
+      where: { id },
+    })
 
-    if (deleteAuthError) {
-      throw new ApiError(deleteAuthError.message, 400)
+    if (!existingUser) {
+      throw new ApiError("User not found", 404)
     }
 
+    const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(id)
+    if (deleteError) throw new ApiError(deleteError.message, 400)
+
     const deletedUser = await prisma.user.delete({
-      where: {
-        id,
-      },
+      where: { id },
     })
 
     await supabase.auth.signOut()

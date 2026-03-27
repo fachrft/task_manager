@@ -12,6 +12,9 @@ export async function GET(
       where: {
         userId: id,
       },
+      include: {
+        user: true,
+      },
     })
     return NextResponse.json(tasks, { status: 200 })
   } catch (error: any) {
