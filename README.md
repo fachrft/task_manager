@@ -2,6 +2,12 @@
 
 **TaskManager** adalah aplikasi manajemen tugas (To-Do List) modern yang dibangun dengan fokus pada pengalaman pengguna yang responsif dan keamanan data. Aplikasi ini mendukung fitur kolaborasi publik di mana siapapun bisa melihat daftar tugas yang sedang dikerjakan, namun hanya pemilik tugas yang memiliki kontrol penuh untuk memodifikasi atau menghapusnya melalui dashboard yang aman.
 
+---
+
+🌐 **Live Production**: [https://task-manager-fachr.vercel.app/](https://task-manager-fachr.vercel.app/)
+
+---
+
 ## ✨ Main Features
 
 - **Public Task Board**: Menampilkan semua tugas dari berbagai user secara transparan di halaman utama.

@@ -22,7 +22,7 @@ import { PasswordInput } from "@/components/password-input"
 
 export default function LoginPage() {
   const router = useRouter()
-  
+
   const form = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -41,7 +41,10 @@ export default function LoginPage() {
           return res.data?.message || "Welcome back!"
         },
         error: (err) => {
-          return err.response?.data?.error || "Login failed. Please check your credentials."
+          return (
+            err.response?.data?.error ||
+            "Login failed. Please check your credentials."
+          )
         },
       },
       {
@@ -64,7 +67,11 @@ export default function LoginPage() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" id="login-form">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-4"
+          id="login-form"
+        >
           <FormField
             control={form.control}
             name="email"
@@ -89,20 +96,12 @@ export default function LoginPage() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <div className="flex items-center justify-between">
-                  <FormLabel>Password</FormLabel>
-                  <Link
-                    href="/forgot-password"
-                    className="text-xs font-medium text-muted-foreground hover:text-foreground underline-offset-4 transition-colors hover:underline"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
+                <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <PasswordInput 
-                    placeholder="••••••••" 
-                    disabled={isSubmitting} 
-                    {...field} 
+                  <PasswordInput
+                    placeholder="••••••••"
+                    disabled={isSubmitting}
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
