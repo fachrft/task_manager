@@ -130,7 +130,12 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
     "confirmPassword": "password123"
   }
   ```
-- **Response (201):** `{"message": "Registration successful!"}`
+- **Response (201):**
+  ```json
+  {
+    "message": "Registration successful!"
+  }
+  ```
 
 #### Login
 
@@ -143,13 +148,25 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
     "password": "password123"
   }
   ```
-- **Response (200):** `{"message": "Login successful!", "user": { ... }, "session": { ... }}`
+- **Response (200):**
+  ```json
+  {
+    "message": "Login successful!",
+    "user": { "id": "...", "name": "...", "email": "..." },
+    "session": { "access_token": "...", "refresh_token": "..." }
+  }
+  ```
 
 #### Logout
 
 `POST /api/users/logout`
 
-- **Response (200):** `{"message": "Logout successful"}`
+- **Response (200):**
+  ```json
+  {
+    "message": "Logout successful"
+  }
+  ```
 
 ---
 
@@ -159,20 +176,58 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
 
 `GET /api/tasks`
 
-- **Response (200):** `Array of Task Objects including creator info`
+- **Response (200):**
+  ```json
+  [
+    {
+      "id": "cl...",
+      "title": "Task Title",
+      "description": "Task Description",
+      "isCompleted": false,
+      "createdAt": "2024-...",
+      "user": {
+        "id": "...",
+        "name": "..."
+      }
+    }
+  ]
+  ```
 
 #### Get Task By Id
 
 `GET /api/tasks/:id`
 
-- **Response (200):** `Task Object including creator info`
+- **Response (200):**
+  ```json
+  {
+    "id": "cl...",
+    "title": "Task Title",
+    "description": "Task Description",
+    "isCompleted": false,
+    "createdAt": "...",
+    "user": {
+      "id": "...",
+      "name": "..."
+    }
+  }
+  ```
 
 #### Get My Tasks (Private)
 
 `GET /api/tasks/my-tasks`
 
 - **Header:** `Authorization: Bearer <token>`
-- **Response (200):** `Array of Task Objects belonging to current user`
+- **Response (200):**
+  ```json
+  [
+    {
+      "id": "cl...",
+      "title": "Task Title",
+      "isCompleted": false,
+      "createdAt": "..."
+    }
+  ]
+  ```
 
 #### Create Task
 
@@ -186,7 +241,18 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
     "description": "Latihan App Router"
   }
   ```
-- **Response (201):** `{"message": "Task created successfully", "data": { ... }}`
+- **Response (201):**
+  ```json
+  {
+    "message": "Task created successfully",
+    "data": {
+      "id": "cl...",
+      "title": "Belajar Next.js",
+      "description": "Latihan App Router",
+      "isCompleted": false
+    }
+  }
+  ```
 
 #### Update Task
 
@@ -201,14 +267,28 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
     "isCompleted": true
   }
   ```
-- **Response (200):** `{"message": "Task updated successfully", "data": { ... }}`
+- **Response (200):**
+  ```json
+  {
+    "message": "Task updated successfully",
+    "data": {
+      "id": "cl...",
+      "isCompleted": true
+    }
+  }
+  ```
 
 #### Delete Task
 
 `DELETE /api/tasks/:id`
 
 - **Header:** `Authorization: Bearer <token>`
-- **Response (200):** `{"message": "Task deleted successfully"}`
+- **Response (200):**
+  ```json
+  {
+    "message": "Task deleted successfully"
+  }
+  ```
 
 ---
 
@@ -218,19 +298,44 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
 
 `GET /api/users`
 
-- **Response (200):** `Array of User Objects`
+- **Response (200):**
+  ```json
+  [
+    {
+      "id": "cl...",
+      "name": "John Doe",
+      "email": "john@example.com"
+    }
+  ]
+  ```
 
 #### Get User Profile By ID
 
 `GET /api/users/:id`
 
-- **Response (200):** `User Object (name, email, etc.)`
+- **Response (200):**
+  ```json
+  {
+    "id": "cl...",
+    "name": "John Doe",
+    "email": "john@example.com"
+  }
+  ```
 
 #### Get Tasks By User ID
 
 `GET /api/users/:id/tasks`
 
-- **Response (200):** `Array of Task Objects belonging to specific user`
+- **Response (200):**
+  ```json
+  [
+    {
+      "id": "cl...",
+      "title": "User Task",
+      "isCompleted": false
+    }
+  ]
+  ```
 
 #### Update Profile
 
