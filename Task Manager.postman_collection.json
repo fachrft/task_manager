@@ -425,10 +425,6 @@
     {
       "key": "baseUrl",
       "value": ""
-    },
-    {
-      "key": "token",
-      "value": ""
     }
   ]
 }
