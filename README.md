@@ -71,7 +71,7 @@ Pastikan Anda sudah menginstal:
    - `DATABASE_URL`: Connection string dari Supabase (Transaction Pooler).
    - `DIRECT_URL`: Connection string dari Supabase (Session Pooler).
    - `NEXT_PUBLIC_SUPABASE_URL`: API URL dari Dashboard Supabase.
-   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`: Anon Key dari Supabase.
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`: Publishable Key dari Supabase.
    - `SUPABASE_SERVICE_ROLE_KEY`: Service Role Key (diperlukan untuk fungsi admin/sync user).
 
 ### 🗄️ Database Setup (Prisma & Supabase)
@@ -130,7 +130,13 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
 
 `POST /api/users/login`
 
-- **Request Body:** `{"email": "john@example.com", "password": "password123"}`
+- **Request Body:**
+  ```json
+  {
+    "email": "john@example.com",
+    "password": "password123"
+  }
+  ```
 - **Response (200):** `{"message": "Login successful!", "user": { ... }, "session": { ... }}`
 
 #### Logout
@@ -167,7 +173,13 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
 `POST /api/tasks`
 
 - **Header:** `Authorization: Bearer <token>`
-- **Request Body:** `{"title": "Belajar Next.js", "description": "Latihan App Router"}`
+- **Request Body:**
+  ```json
+  {
+    "title": "Belajar Next.js",
+    "description": "Latihan App Router"
+  }
+  ```
 - **Response (201):** `{"message": "Task created successfully", "data": { ... }}`
 
 #### Update Task
@@ -175,7 +187,14 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
 `PUT /api/tasks/:id`
 
 - **Header:** `Authorization: Bearer <token>`
-- **Request Body:** `{"title": "Updated Title", "isCompleted": true}`
+- **Request Body:**
+  ```json
+  {
+    "title": "Updated Title",
+    "description": "Updated Description",
+    "isCompleted": true
+  }
+  ```
 - **Response (200):** `{"message": "Task updated successfully", "data": { ... }}`
 
 #### Delete Task
@@ -212,7 +231,13 @@ Semua endpoint API berada di bawah prefix `/api`. Sebagian besar endpoint (kecua
 `PUT /api/users/:id`
 
 - **Header:** `Authorization: Bearer <token>`
-- **Request Body:** `{"name": "New Name", "email": "new-email@example.com"}`
+- **Request Body:**
+  ```json
+  {
+    "name": "New Name",
+    "email": "new-email@example.com"
+  }
+  ```
 
 #### Delete Account
 
