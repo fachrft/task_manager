@@ -1,11 +1,10 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import api from "@/lib/axios"
+import { taskService } from "@/services/api"
 import { Task } from "@/types/task"
 import { TaskCard } from "@/components/task-card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { CheckSquare } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 
 function TaskSkeleton() {
@@ -31,7 +30,7 @@ export default function Home() {
   const fetchTasks = useCallback(async () => {
     try {
       setIsLoading(true)
-      const res = await api.get("/tasks")
+      const res = await taskService.getAllTasks()
       setTasks(res.data)
     } catch (error) {
       console.error("Failed to fetch public tasks", error)
@@ -62,10 +61,8 @@ export default function Home() {
           {/* Task List */}
           <div className="flex flex-col gap-3">
             {isLoading ? (
-              // Skeleton Loading
               Array.from({ length: 5 }).map((_, i) => <TaskSkeleton key={i} />)
             ) : tasks.length === 0 ? (
-              // Empty State
               <div className="flex min-h-[300px] items-center justify-center rounded-xl border border-border/60 bg-card/30 p-8 text-center backdrop-blur-sm">
                 <div className="flex flex-col items-center gap-3">
                   <div className="rounded-full bg-accent/50 p-4">
@@ -80,7 +77,6 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-              // Task Cards (View Only)
               tasks.map((task) => (
                 <TaskCard key={task.id} task={task} />
               ))

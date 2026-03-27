@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { updateProfileSchema, UpdateProfileData } from "@/lib/validator"
 import { createClient } from "@/utils/supabase/client"
-import api from "@/lib/axios"
+import { userService } from "@/services/api"
 import toast from "react-hot-toast"
 import { Loader2, Trash2, UserCircle } from "lucide-react"
 
@@ -61,7 +61,7 @@ export default function ProfilePage() {
         }
         setUserId(authUser.id)
         
-        const res = await api.get(`/users/${authUser.id}`)
+        const res = await userService.getUser(authUser.id)
         form.reset({
           name: res.data.name || "",
           email: res.data.email || "",
@@ -80,7 +80,7 @@ export default function ProfilePage() {
     if (!userId) return
     setIsUpdating(true)
     try {
-      await toast.promise(api.put(`/users/${userId}`, data), {
+      await toast.promise(userService.updateProfile(userId, data), {
         loading: "Updating profile...",
         success: "Profile updated successfully!",
         error: "Failed to update profile",
@@ -100,7 +100,7 @@ export default function ProfilePage() {
     if (!userId) return
     setIsDeleting(true)
     try {
-      await toast.promise(api.delete(`/users/${userId}`), {
+      await toast.promise(userService.deleteAccount(userId), {
         loading: "Deleting account...",
         success: "Account deleted permanently",
         error: "Failed to delete account",

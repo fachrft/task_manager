@@ -7,8 +7,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { TaskCard } from "@/components/task-card"
 import { TaskFormModal } from "@/components/task-form-modal"
 import { Task } from "@/types/task"
+import { taskService } from "@/services/api"
 import { TaskData } from "@/lib/validator"
-import api from "@/lib/axios"
 import toast from "react-hot-toast"
 
 function TaskSkeleton() {
@@ -34,7 +34,7 @@ export default function DashboardPage() {
   const fetchTasks = useCallback(async () => {
     try {
       setIsLoading(true)
-      const res = await api.get("/tasks/my-tasks")
+      const res = await taskService.getMyTasks()
       setTasks(res.data)
     } catch (error) {
       toast.error("Failed to fetch tasks")
@@ -52,7 +52,7 @@ export default function DashboardPage() {
     setIsSubmitting(true)
     try {
       await toast.promise(
-        api.post("/tasks", data),
+        taskService.createTask(data),
         {
           loading: "Creating task...",
           success: "Task created!",
@@ -65,7 +65,6 @@ export default function DashboardPage() {
       setIsCreateOpen(false)
       fetchTasks()
     } catch (error) {
-      // handled by toast.promise
     } finally {
       setIsSubmitting(false)
     }
@@ -77,7 +76,7 @@ export default function DashboardPage() {
     setIsSubmitting(true)
     try {
       await toast.promise(
-        api.put(`/tasks/${editingTask.id}`, data),
+        taskService.updateTask(editingTask.id, data),
         {
           loading: "Updating task...",
           success: "Task updated!",
@@ -102,7 +101,7 @@ export default function DashboardPage() {
       )
     )
     try {
-      await api.put(`/tasks/${task.id}`, {
+      await taskService.updateTask(task.id, {
         title: task.title,
         description: task.description,
         isCompleted: !task.is_completed,
@@ -117,7 +116,7 @@ export default function DashboardPage() {
   const handleDelete = async (taskId: string) => {
     try {
       await toast.promise(
-        api.delete(`/tasks/${taskId}`),
+        taskService.deleteTask(taskId),
         {
           loading: "Deleting task...",
           success: "Task deleted!",
